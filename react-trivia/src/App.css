@@ -12,53 +12,31 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
 
-#root {
-  margin: 0 auto;
-  text-align: center;
+  --clr-light: #d1d1d1;
+  --clr-lighter: ;
+  --clr-dark: #333333;
+  --clr-darker: #1a1a1a;
+  --clr-primary: #777777;
+  --clr-secondary: #424242de;
+  --clr-accent: #009FFD;
+
+  --foreground: var(--clr-light);
+  --background: var(--clr-dark);
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--clr-accent);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: #242424;
-  width: 100%;
-}
-
-header {
-  padding: 10px;
-  background-color: #d1d1d1;
-  color: #333333;
-  font-size: 30;
-  border-bottom: 1px solid #f6f6f6;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 4px;
-  border-bottom: 4px solid #777777;
-  width: 100%;
-}
-
-h1 {
-  font-size: 2.2em;
-  line-height: 1;
+  color: var(--clr-accent);
 }
 
 button, select, input {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--clr-secondary);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -71,10 +49,14 @@ button, select, input {
 button:hover, select:hover, input:hover {
   border-color: #d2d2d2;
   background-color: #363636;
+  transform: scale(108%);
+  transition: transform 0.2s;
 }
 button:active, select:active, input:active {
+  transform: scale(95%);
   border-color: #7276ec;
   background-color: #a7a7a7;
+  transition: transform 0.2s;
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -89,16 +71,126 @@ button:active, select:active, input:active {
   }
 }
 
+#root {
+  margin: 0 auto;
+  text-align: center;
+  width: 100vw;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #272727;
+  width: 100%;
+}
+
+header {
+  padding: 10px;
+  background-color: var(--clr-light);
+  color: var(--clr-light);
+  font-size: 30;
+  border-bottom: 1px solid var(--clr-secondary);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 4px;
+  border-bottom: 4px solid var(--clr-primary);
+}
+
+h1 {
+  font-size: 2.2em;
+  line-height: 1;
+}
+
+
 .triviaHeader {
   font-family: "Avant Garde", sans-serif;
   font-size: 2.2em;
   font-weight: bolder;
   line-height: .8;
-  color: #333333;
+  color: var(--clr-darker);
+}
+
+.categoriesText {
+  font-size: 1.6em;
+  font-family: "Avant Garde" sans-serif;
+  font-weight: bold;
+  line-height: .9;
+  color: var(--clr-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2.5%;
+  margin-bottom: 3%;
+}
+
+.catContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.catBox {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  flex-wrap: wrap;
+  width: 60%;
+  border: 1px solid var(--clr-primary);
+  padding: 2%;
+  border-radius: 30px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 1%;
+}
+
+.catButton {
+  width: 120px;
+  height: 80px; 
+  margin: 4px;
+  line-height: 15px;
+}
+
+.catButtonText {
+  font-size: .85em;
+  font-family: "Avant Garde" sans-serif;
+  color: var(--clr-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.catInputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.catInputBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin-top: 1%;
+}
+
+.toggleCatInputs {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.numInputBox {
+  margin: 4px;
+}
+
+.diffSelect {
+  margin: 4px;
 }
 
 .footer {
-  margin-top: 10px;
-  border-top: 1px solid #3d3d3d;
+  margin-top: 1%;
+  border-top: 1px solid var(--clr-secondary);
   padding: 10px;
 }

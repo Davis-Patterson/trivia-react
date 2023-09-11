@@ -5,6 +5,7 @@ import Questions from 'components/Questions';
 import CatInputs from 'components/CatInputs';
 import Footer from 'components/Footer';
 import './App.css';
+import QuesInputs from './components/QuesInputs';
 
 function App() {
   const [trivCatData, setTrivCatData] = useState([]);
@@ -12,6 +13,7 @@ function App() {
   const [quesDiff, setQuesDiff] = useState('Easy');
   const [selCat, setSelCat] = useState(null);
   const [isCatInputs, setIsCatInputs] = useState(false);
+  const [trivQuesData, setTrivQuesData] = useState([]);
 
   useEffect(() => {
     axios
@@ -38,19 +40,22 @@ function App() {
       <header>
         <p className='triviaHeader'>Trivia!</p>
       </header>
-      <CatInputs
-        quesNum={quesNum}
-        handleInputChange={handleInputChange}
-        quesDiff={quesDiff}
-        handleDiff={handleDiff}
-        isCatInputs={isCatInputs}
-        setIsCatInputs={setIsCatInputs}
-      />
       {selCat ? (
         <Questions category={selCat} />
       ) : (
         <Categories trivCatData={trivCatData} handleCategory={handleCategory} />
       )}
+      {selCat ? null : (
+        <CatInputs
+          quesNum={quesNum}
+          handleInputChange={handleInputChange}
+          quesDiff={quesDiff}
+          handleDiff={handleDiff}
+          isCatInputs={isCatInputs}
+          setIsCatInputs={setIsCatInputs}
+        />
+      )}
+      {selCat ? <QuesInputs setSelCat={setSelCat} /> : null}
       <Footer />
     </>
   );
