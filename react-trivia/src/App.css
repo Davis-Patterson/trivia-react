@@ -97,4 +97,8 @@ button:active, select:active, input:active {
   color: #333333;
 }
 
-
+.footer {
+  margin-top: 10px;
+  border-top: 1px solid #3d3d3d;
+  padding: 10px;
+}
