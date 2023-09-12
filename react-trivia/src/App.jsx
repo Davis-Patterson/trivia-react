@@ -8,19 +8,33 @@ import './App.css';
 import QuesInputs from './components/QuesInputs';
 
 function App() {
+  const initQuesIdx = 0;
   const [trivCatData, setTrivCatData] = useState([]);
   const [quesNum, setQuesNum] = useState(1);
   const [quesDiff, setQuesDiff] = useState('Easy');
   const [selCat, setSelCat] = useState(null);
   const [isCatInputs, setIsCatInputs] = useState(false);
   const [trivQuesData, setTrivQuesData] = useState([]);
-  const baseUrl = 'https://opentdb.com/api_category.php?';
+  const [curQuesIdx, setCurQuesIdx] = useState(initQuesIdx);
+  const lastQuesIdx = trivQuesData.length - 1;
+  const catUrl = 'https://opentdb.com/api_category.php?';
+  // const baseUrl = 'https://opentdb.com/api.php?amount=10&';
+  const baseUrl = 'https://opentdb.com/api.php?amount=10&category=20&';
 
   useEffect(() => {
     axios
-      .get('https://opentdb.com/api_category.php?')
+      .get(catUrl)
       .then((response) => setTrivCatData(response.data.trivia_categories));
   }, []);
+
+  useEffect(() => {
+    if (selCat) {
+      axios
+        .get(baseUrl)
+        .then((response) => setTrivQuesData(response.data.results))
+        .catch((error) => console.error(`Error: ${error}`));
+    }
+  }, [selCat]);
 
   const handleCategory = (trivCat) => {
     setSelCat(trivCat);
@@ -42,11 +56,24 @@ function App() {
         <p className='triviaHeader'>Trivia!</p>
       </header>
       {selCat ? (
-        <Questions category={selCat} />
+        <Questions
+          category={selCat}
+          trivQuesData={trivQuesData}
+          curQuesIdx={curQuesIdx}
+          setCurQuesIdx={setCurQuesIdx}
+        />
       ) : (
         <Categories trivCatData={trivCatData} handleCategory={handleCategory} />
       )}
-      {selCat ? null : (
+      {selCat ? (
+        <QuesInputs
+          initQuesIdx={initQuesIdx}
+          setSelCat={setSelCat}
+          curQuesIdx={curQuesIdx}
+          setCurQuesIdx={setCurQuesIdx}
+          lastQuesIdx={lastQuesIdx}
+        />
+      ) : (
         <CatInputs
           quesNum={quesNum}
           handleInputChange={handleInputChange}
@@ -56,7 +83,6 @@ function App() {
           setIsCatInputs={setIsCatInputs}
         />
       )}
-      {selCat ? <QuesInputs setSelCat={setSelCat} /> : null}
       <Footer />
     </>
   );
