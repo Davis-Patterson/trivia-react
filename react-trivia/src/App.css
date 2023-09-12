@@ -213,13 +213,14 @@ h1 {
   margin: 4px;
   line-height: 15px;
   background: linear-gradient(140deg, rgba(0, 0, 0, 0.4), rgba(29, 29, 29, 0.9));
-  border: 1px solid var(--clr-primary);
+  border: 1px solid var(--clr-secondary);
   border-radius: 10px;
 }
 .catButton:hover {
   border-color: #dbdbdb;
   background-color: #262626b6;
   transform: scale(108%);
+  border: 1px solid var(--clr-primary);
   transition: transform 0.2s;
 }
 .catButton:active {
@@ -279,7 +280,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   background: linear-gradient(140deg, rgba(0, 0, 0, 0.6), rgba(29, 29, 29, 1));
-  border: 1px solid var(--clr-primary);
+  border: 1px solid var(--clr-secondary);
   border-radius: 10px;
   margin: 5%;
 }
