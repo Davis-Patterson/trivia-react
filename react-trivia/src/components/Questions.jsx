@@ -58,9 +58,15 @@ function Questions({ selCat, trivQuesData, curQuesIdx, showAns, setShowAns }) {
             ) : (
               <p className='catNameText'>{ques.category}</p>
             )}
-            <p className='quesDiffText'>
-              <strong>difficulty</strong>: <i>{ques.difficulty}</i>
-            </p>
+            {selCat ? (
+              <p className='catRandText'>
+                <strong>category</strong>: <i>set</i>
+              </p>
+            ) : (
+              <p className='catRandText'>
+                <strong>category</strong>: <i>random</i>
+              </p>
+            )}
           </div>
           <div className='arcadeBox'>
             <div className='shadow'>
@@ -72,9 +78,17 @@ function Questions({ selCat, trivQuesData, curQuesIdx, showAns, setShowAns }) {
             </div>
             <div className='quesBox'>
               <div className='textBox'>
-                <p className='quesCount'>
-                  Question {curQuesIdx + 1}/{trivQuesData.length}:
-                </p>
+                <div className='quesInfoBox'>
+                  <p className='quesCount'>
+                    Question:{' '}
+                    <strong>
+                      {curQuesIdx + 1}/{trivQuesData.length}
+                    </strong>
+                  </p>
+                  <p className='quesDiffText'>
+                    <strong>difficulty</strong>: <i>{ques.difficulty}</i>
+                  </p>
+                </div>
                 <p className='quesText'>{he.decode(ques.question)}</p>
               </div>
               <div className='choiceBox'>
