@@ -20,22 +20,22 @@ function App() {
   const [curQuesIdx, setCurQuesIdx] = useState(initQuesIdx);
   const lastQuesIdx = trivQuesData.length - 1;
   const catUrl = 'https://opentdb.com/api_category.php?';
-  const baseUrl = 'https://opentdb.com/api.php?amount=10&';
+  const baseUrl = 'https://opentdb.com/api.php?';
   // const baseUrl = 'https://opentdb.com/api.php?amount=10&category=20&';
 
   function createUrl() {
-    let url = `${baseUrl}amount=${quesNum}&`;
+    let url = `${baseUrl}amount=${quesNum}`;
 
     if (selCat) {
-      url += `category=${selCat.id}&`;
+      url += `&category=${selCat.id}`;
     }
 
     if (quesDiff) {
-      url += `difficulty=${quesDiff}&`;
+      url += `&difficulty=${quesDiff}`;
     }
 
     if (quesType) {
-      url += `type=${quesType === 'multi' ? 'multiple' : 'boolean'}&`;
+      url += `&type=${quesType === 'multi' ? 'multiple' : 'boolean'}`;
     }
 
     return url;
@@ -50,6 +50,7 @@ function App() {
   useEffect(() => {
     if (hasSelCat) {
       const url = createUrl();
+      console.log(`url: ${url}`);
       axios
         .get(url)
         .then((response) => setTrivQuesData(response.data.results))

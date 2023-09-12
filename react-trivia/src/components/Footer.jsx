@@ -2,7 +2,8 @@ const Footer = () => {
   return (
     <>
       <div className='footer'>
-        <p className='allRights'>All Rights Reserved</p>
+        {/* <p className='allRights'>© Davis Patterson</p> */}
+        <p className='allRights'>@Davis-Patterson</p>
       </div>
     </>
   );

@@ -181,6 +181,32 @@ h1 {
     inset -32px 15px 50px 0px #242424;
 }
 
+.catNameBox {
+  margin: 10px;
+  width: 40%;
+}
+
+.catNameText {
+  font-size: 220%;
+  font-family: "Avant Garde" sans-serif;
+  color: var(--clr-light);
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 4px;
+}
+
+.quesDiffText {
+  font-size: 90%;
+  font-family: "Avant Garde" sans-serif;
+  color: var(--clr-light);
+  margin-top: 6px;
+  margin-bottom: 4px;
+  line-height: 1;
+  padding: 1px;
+}
+
 .catButton {
   width: 120px;
   height: 80px; 
@@ -259,7 +285,17 @@ h1 {
 }
 
 .textBox {
-  padding: 2% 2% 0% 2%;
+  padding: 4% 4% 0% 4%;
+}
+
+.quesCount {
+  font-size: 80%;
+  font-family: "Avant Garde" sans-serif;
+  color: var(--clr-light);
+  margin-top: .1%;
+  padding-bottom: 3%;
+  line-height: 1;
+  border-bottom: 1px solid var(--clr-primary);
 }
 
 .quesText {
@@ -272,11 +308,52 @@ h1 {
   align-items: center;
   border-bottom: 1px solid var(--clr-primary);
   padding-bottom: 2%;
+  margin-top: 1%;
 }
 
 .choiceBox {
   width: 60%;
   margin-bottom: 5%;
+}
+
+.answerText {
+  font-size: 90%;
+  font-family: "Avant Garde" sans-serif;
+  color: var(--clr-light);
+  margin: 0;
+  margin-bottom: 4%;
+  font-style: italic;
+  cursor: pointer;
+}
+.answerText:hover {
+  transform: scale(110%);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  transition: scale 0.5s text-shadow 0.5s;
+}
+
+.answerTextShown {
+  font-size: 90%;
+  font-family: "Avant Garde" sans-serif;
+  color: rgb(55, 204, 55);
+  margin: 0;
+  margin-bottom: 4%;
+  font-weight: 900;
+  cursor: pointer;
+}
+.answerTextShown:hover {
+  transform: scale(110%);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  transition: scale 0.5s text-shadow 0.5s;
+}
+
+.noQues {
+  font-size: 180%;
+  font-family: "Avant Garde" sans-serif;
+  color: var(--clr-light);
+  margin: 2%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  font-weight: 900;
 }
 
 .footer {

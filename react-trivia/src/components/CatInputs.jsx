@@ -32,7 +32,7 @@ const CatInputs = ({
                 className='numInput'
                 name='Go'
                 min='1'
-                max={100}
+                max={50}
                 value={quesNum}
                 onChange={handleInputChange}
               />

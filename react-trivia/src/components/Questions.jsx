@@ -17,6 +17,8 @@ function Questions({ selCat, trivQuesData, curQuesIdx, setCurQuesIdx }) {
     }
   }, [ques]);
 
+  console.log(`ques: ${ques}`);
+
   function shuffleArray(array) {
     // fisher-yates shuffle algorithm modified to handle T/F questions differently
     if (
@@ -47,11 +49,19 @@ function Questions({ selCat, trivQuesData, curQuesIdx, setCurQuesIdx }) {
   }
 
   if (ques) {
-    console.log(ques);
     if (trivQuesData.length > 0 && curQuesIdx < trivQuesData.length) {
       return (
         <div className='quesContainer'>
-          {selCat ? <h2>{selCat.name}</h2> : <h2>{ques.category}</h2>}
+          <div className='catNameBox'>
+            {selCat ? (
+              <p className='catNameText'>{selCat.name}</p>
+            ) : (
+              <p className='catNameText'>{ques.category}</p>
+            )}
+            <p className='quesDiffText'>
+              <strong>difficulty</strong>: <i>{ques.difficulty}</i>
+            </p>
+          </div>
           <div className='arcadeBox'>
             <div className='shadow'>
               <img
@@ -62,6 +72,9 @@ function Questions({ selCat, trivQuesData, curQuesIdx, setCurQuesIdx }) {
             </div>
             <div className='quesBox'>
               <div className='textBox'>
+                <p className='quesCount'>
+                  Question {curQuesIdx + 1}/{trivQuesData.length}:
+                </p>
                 <p className='quesText'>{ques.question}</p>
               </div>
               <div className='choiceBox'>
@@ -70,9 +83,13 @@ function Questions({ selCat, trivQuesData, curQuesIdx, setCurQuesIdx }) {
                 ))}
               </div>
               {showAns ? (
-                <p onClick={handleShow}>{ques.correct_answer}</p>
+                <p onClick={handleShow} className='answerTextShown'>
+                  {ques.correct_answer}
+                </p>
               ) : (
-                <p onClick={handleShow}>Click for answer!</p>
+                <p onClick={handleShow} className='answerText'>
+                  ~ click for answer ~
+                </p>
               )}
             </div>
           </div>
@@ -82,7 +99,23 @@ function Questions({ selCat, trivQuesData, curQuesIdx, setCurQuesIdx }) {
       return <div>Loading questions...</div>;
     }
   } else {
-    return <div>No question data available</div>;
+    return (
+      <div className='quesContainer'>
+        <h2>Error</h2>
+        <div className='arcadeBox'>
+          <div className='shadow'>
+            <img
+              src={arcadeImg}
+              alt='Arcade Img'
+              className='catBoxBanner'
+            ></img>
+          </div>
+          <div className='quesBox'>
+            <div className='noQues'>No question data available</div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
