@@ -14,10 +14,11 @@ function App() {
   const [selCat, setSelCat] = useState(null);
   const [isCatInputs, setIsCatInputs] = useState(false);
   const [trivQuesData, setTrivQuesData] = useState([]);
+  const baseUrl = 'https://opentdb.com/api_category.php?';
 
   useEffect(() => {
     axios
-      .get('https://opentdb.com/api_category.php')
+      .get('https://opentdb.com/api_category.php?')
       .then((response) => setTrivCatData(response.data.trivia_categories));
   }, []);
 
