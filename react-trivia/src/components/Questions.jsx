@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import arcadeImg from 'assets/arcade.png';
+import he from 'he';
 
-function Questions({ selCat, trivQuesData, curQuesIdx, setCurQuesIdx }) {
+function Questions({ selCat, trivQuesData, curQuesIdx, showAns, setShowAns }) {
   const ques = trivQuesData[curQuesIdx];
-  const [showAns, setShowAns] = useState(false);
   const [allChoices, setAllChoices] = useState([]);
 
   const handleShow = () => {
@@ -75,11 +75,11 @@ function Questions({ selCat, trivQuesData, curQuesIdx, setCurQuesIdx }) {
                 <p className='quesCount'>
                   Question {curQuesIdx + 1}/{trivQuesData.length}:
                 </p>
-                <p className='quesText'>{ques.question}</p>
+                <p className='quesText'>{he.decode(ques.question)}</p>
               </div>
               <div className='choiceBox'>
                 {allChoices.map((answer, index) => (
-                  <button key={index}>{answer}</button>
+                  <button key={index}>{he.decode(answer)}</button>
                 ))}
               </div>
               {showAns ? (

@@ -7,6 +7,7 @@ const QuesInputs = ({
   lastQuesIdx,
   setTrivQuesData,
   setSelCat,
+  setShowAns,
 }) => {
   const handleCat = () => {
     setHasSelCat(!hasSelCat);
@@ -15,19 +16,23 @@ const QuesInputs = ({
     setSelCat(null);
   };
 
+  const handleBack = () => {
+    setCurQuesIdx(curQuesIdx - 1);
+    setShowAns(false);
+  };
+
+  const handleNext = () => {
+    setCurQuesIdx(curQuesIdx + 1);
+    setShowAns(false);
+  };
+
   return (
     <>
       <button onClick={handleCat}>≡ Categories</button>
-      <button
-        onClick={() => setCurQuesIdx(curQuesIdx - 1)}
-        disabled={curQuesIdx === initQuesIdx}
-      >
+      <button onClick={handleBack} disabled={curQuesIdx === initQuesIdx}>
         ⬅Back
       </button>
-      <button
-        onClick={() => setCurQuesIdx(curQuesIdx + 1)}
-        disabled={curQuesIdx === lastQuesIdx}
-      >
+      <button onClick={handleNext} disabled={curQuesIdx === lastQuesIdx}>
         Next⮕
       </button>
     </>

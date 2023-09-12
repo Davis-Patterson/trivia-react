@@ -3,9 +3,9 @@ import axios from 'axios';
 import Categories from 'components/Categories';
 import Questions from 'components/Questions';
 import CatInputs from 'components/CatInputs';
+import QuesInputs from './components/QuesInputs';
 import Footer from 'components/Footer';
 import './App.css';
-import QuesInputs from './components/QuesInputs';
 
 function App() {
   const initQuesIdx = 0;
@@ -18,6 +18,7 @@ function App() {
   const [isCatInputs, setIsCatInputs] = useState(false);
   const [trivQuesData, setTrivQuesData] = useState([]); // trivia question data
   const [curQuesIdx, setCurQuesIdx] = useState(initQuesIdx);
+  const [showAns, setShowAns] = useState(false);
   const lastQuesIdx = trivQuesData.length - 1;
   const catUrl = 'https://opentdb.com/api_category.php?';
   const baseUrl = 'https://opentdb.com/api.php?';
@@ -88,7 +89,8 @@ function App() {
           selCat={selCat}
           trivQuesData={trivQuesData}
           curQuesIdx={curQuesIdx}
-          setCurQuesIdx={setCurQuesIdx}
+          showAns={showAns}
+          setShowAns={setShowAns}
         />
       ) : (
         <Categories trivCatData={trivCatData} handleCategory={handleCategory} />
@@ -103,6 +105,7 @@ function App() {
           lastQuesIdx={lastQuesIdx}
           setTrivQuesData={setTrivQuesData}
           setSelCat={setSelCat}
+          setShowAns={setShowAns}
         />
       ) : (
         <CatInputs
