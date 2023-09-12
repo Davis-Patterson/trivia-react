@@ -5,6 +5,8 @@ import Questions from 'components/Questions';
 import CatInputs from 'components/CatInputs';
 import QuesInputs from './components/QuesInputs';
 import Footer from 'components/Footer';
+import arcadeImg from 'assets/arcade.png';
+import arcadeImg2 from 'assets/arcade2.png';
 import './App.css';
 
 function App() {
@@ -19,10 +21,11 @@ function App() {
   const [trivQuesData, setTrivQuesData] = useState([]); // trivia question data
   const [curQuesIdx, setCurQuesIdx] = useState(initQuesIdx);
   const [showAns, setShowAns] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const lastQuesIdx = trivQuesData.length - 1;
   const catUrl = 'https://opentdb.com/api_category.php?';
   const baseUrl = 'https://opentdb.com/api.php?';
-  // const baseUrl = 'https://opentdb.com/api.php?amount=10&category=20&';
+  const imageList = [arcadeImg, arcadeImg2];
 
   function createUrl() {
     let url = `${baseUrl}amount=${quesNum}`;
@@ -41,6 +44,14 @@ function App() {
 
     return url;
   }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageList.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     axios
@@ -91,9 +102,16 @@ function App() {
           curQuesIdx={curQuesIdx}
           showAns={showAns}
           setShowAns={setShowAns}
+          currentImageIndex={currentImageIndex}
+          imageList={imageList}
         />
       ) : (
-        <Categories trivCatData={trivCatData} handleCategory={handleCategory} />
+        <Categories
+          trivCatData={trivCatData}
+          handleCategory={handleCategory}
+          currentImageIndex={currentImageIndex}
+          imageList={imageList}
+        />
       )}
       {hasSelCat ? (
         <QuesInputs

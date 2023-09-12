@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import arcadeImg from 'assets/arcade.png';
 import he from 'he';
 
-function Questions({ selCat, trivQuesData, curQuesIdx, showAns, setShowAns }) {
+function Questions({
+  selCat,
+  trivQuesData,
+  curQuesIdx,
+  showAns,
+  setShowAns,
+  currentImageIndex,
+  imageList,
+}) {
   const ques = trivQuesData[curQuesIdx];
   const [allChoices, setAllChoices] = useState([]);
 
@@ -71,7 +78,7 @@ function Questions({ selCat, trivQuesData, curQuesIdx, showAns, setShowAns }) {
           <div className='arcadeBox'>
             <div className='shadow'>
               <img
-                src={arcadeImg}
+                src={`${imageList[currentImageIndex]}`}
                 alt='Arcade Img'
                 className='catBoxBanner'
               ></img>
@@ -119,7 +126,7 @@ function Questions({ selCat, trivQuesData, curQuesIdx, showAns, setShowAns }) {
         <div className='arcadeBox'>
           <div className='shadow'>
             <img
-              src={arcadeImg}
+              src={`${imageList[currentImageIndex]}`}
               alt='Arcade Img'
               className='catBoxBanner'
             ></img>

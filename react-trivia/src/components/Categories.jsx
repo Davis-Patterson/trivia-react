@@ -1,6 +1,9 @@
-import arcadeImg from 'assets/arcade.png';
-
-function Categories({ trivCatData, handleCategory }) {
+function Categories({
+  trivCatData,
+  handleCategory,
+  currentImageIndex,
+  imageList,
+}) {
   return (
     <div>
       <p className='categoriesText'>Categories</p>
@@ -8,7 +11,7 @@ function Categories({ trivCatData, handleCategory }) {
         <div className='arcadeBox'>
           <div className='shadow'>
             <img
-              src={arcadeImg}
+              src={`${imageList[currentImageIndex]}`}
               alt='Arcade Img'
               className='catBoxBanner'
             ></img>
