@@ -5,7 +5,7 @@ function Categories({ trivCatData, handleCategory }) {
     <div>
       <p className='categoriesText'>Categories</p>
       <div className='catContainer'>
-        <div className='catBox'>
+        <div className='arcadeBox'>
           <div className='shadow'>
             <img
               src={arcadeImg}
