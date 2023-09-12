@@ -10,16 +10,36 @@ import QuesInputs from './components/QuesInputs';
 function App() {
   const initQuesIdx = 0;
   const [trivCatData, setTrivCatData] = useState([]);
-  const [quesNum, setQuesNum] = useState(1);
-  const [quesDiff, setQuesDiff] = useState('Easy');
-  const [selCat, setSelCat] = useState(null);
+  const [quesNum, setQuesNum] = useState(10);
+  const [quesDiff, setQuesDiff] = useState('');
+  const [quesType, setQuesType] = useState('');
+  const [hasSelCat, setHasSelCat] = useState(false); // triggers fetch for questions
+  const [selCat, setSelCat] = useState(null); // actual category data
   const [isCatInputs, setIsCatInputs] = useState(false);
-  const [trivQuesData, setTrivQuesData] = useState([]);
+  const [trivQuesData, setTrivQuesData] = useState([]); // trivia question data
   const [curQuesIdx, setCurQuesIdx] = useState(initQuesIdx);
   const lastQuesIdx = trivQuesData.length - 1;
   const catUrl = 'https://opentdb.com/api_category.php?';
-  // const baseUrl = 'https://opentdb.com/api.php?amount=10&';
-  const baseUrl = 'https://opentdb.com/api.php?amount=10&category=20&';
+  const baseUrl = 'https://opentdb.com/api.php?amount=10&';
+  // const baseUrl = 'https://opentdb.com/api.php?amount=10&category=20&';
+
+  function createUrl() {
+    let url = `${baseUrl}amount=${quesNum}&`;
+
+    if (selCat) {
+      url += `category=${selCat.id}&`;
+    }
+
+    if (quesDiff) {
+      url += `difficulty=${quesDiff}&`;
+    }
+
+    if (quesType) {
+      url += `type=${quesType === 'multi' ? 'multiple' : 'boolean'}&`;
+    }
+
+    return url;
+  }
 
   useEffect(() => {
     axios
@@ -28,15 +48,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (selCat) {
+    if (hasSelCat) {
+      const url = createUrl();
       axios
-        .get(baseUrl)
+        .get(url)
         .then((response) => setTrivQuesData(response.data.results))
         .catch((error) => console.error(`Error: ${error}`));
     }
-  }, [selCat]);
+  }, [hasSelCat]);
 
   const handleCategory = (trivCat) => {
+    setHasSelCat(!hasSelCat);
     setSelCat(trivCat);
   };
 
@@ -50,14 +72,19 @@ function App() {
     setQuesDiff(value);
   };
 
+  const handleType = (event) => {
+    const value = event.target.value;
+    setQuesType(value);
+  };
+
   return (
     <>
       <header>
         <p className='triviaHeader'>Trivia!</p>
       </header>
-      {selCat ? (
+      {hasSelCat ? (
         <Questions
-          category={selCat}
+          selCat={selCat}
           trivQuesData={trivQuesData}
           curQuesIdx={curQuesIdx}
           setCurQuesIdx={setCurQuesIdx}
@@ -65,13 +92,16 @@ function App() {
       ) : (
         <Categories trivCatData={trivCatData} handleCategory={handleCategory} />
       )}
-      {selCat ? (
+      {hasSelCat ? (
         <QuesInputs
           initQuesIdx={initQuesIdx}
-          setSelCat={setSelCat}
+          hasSelCat={hasSelCat}
+          setHasSelCat={setHasSelCat}
           curQuesIdx={curQuesIdx}
           setCurQuesIdx={setCurQuesIdx}
           lastQuesIdx={lastQuesIdx}
+          setTrivQuesData={setTrivQuesData}
+          setSelCat={setSelCat}
         />
       ) : (
         <CatInputs
@@ -81,6 +111,11 @@ function App() {
           handleDiff={handleDiff}
           isCatInputs={isCatInputs}
           setIsCatInputs={setIsCatInputs}
+          quesType={quesType}
+          handleType={handleType}
+          hasSelCat={hasSelCat}
+          setHasSelCat={setHasSelCat}
+          setCurQuesIdx={setCurQuesIdx}
         />
       )}
       <Footer />

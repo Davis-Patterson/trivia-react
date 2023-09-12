@@ -5,9 +5,19 @@ const CatInputs = ({
   handleDiff,
   isCatInputs,
   setIsCatInputs,
+  quesType,
+  handleType,
+  hasSelCat,
+  setHasSelCat,
+  setCurQuesIdx,
 }) => {
   const handleToggle = () => {
     setIsCatInputs(!isCatInputs);
+  };
+
+  const handleCat = () => {
+    setHasSelCat(!hasSelCat);
+    setCurQuesIdx(0);
   };
 
   return (
@@ -25,22 +35,31 @@ const CatInputs = ({
                 max={100}
                 value={quesNum}
                 onChange={handleInputChange}
-                placeholder='1'
               />
             </div>
             <div className='diffSelect'>
               <select value={quesDiff} onChange={handleDiff}>
-                <option value=''>--Choose Diffficulty--</option>
+                <option value=''>Diffficulty</option>
                 <option value='easy'>Easy</option>
                 <option value='medium'>Medium</option>
                 <option value='hard'>Hard</option>
+              </select>
+            </div>
+            <div className='typeSelect'>
+              <select value={quesType} onChange={handleType}>
+                <option value=''>Type</option>
+                <option value='multi'>Multiple</option>
+                <option value='tf'>True/False</option>
               </select>
             </div>
           </div>
         </div>
       ) : null}
       <button className='toggleCatInputs' onClick={handleToggle}>
-        Settings
+        ≡ Settings
+      </button>
+      <button className='toggleCatInputs' onClick={handleCat}>
+        Search ⮕
       </button>
     </>
   );

@@ -1,13 +1,18 @@
 const QuesInputs = ({
   initQuesIdx,
-  setSelCat,
+  hasSelCat,
+  setHasSelCat,
   curQuesIdx,
   setCurQuesIdx,
   lastQuesIdx,
+  setTrivQuesData,
+  setSelCat,
 }) => {
   const handleCat = () => {
-    setSelCat(null);
+    setHasSelCat(!hasSelCat);
     setCurQuesIdx(0);
+    setTrivQuesData([]);
+    setSelCat(null);
   };
 
   return (

@@ -188,6 +188,7 @@ h1 {
   line-height: 15px;
   background: linear-gradient(140deg, rgba(0, 0, 0, 0.4), rgba(29, 29, 29, 0.9));
   border: 1px solid var(--clr-primary);
+  border-radius: 10px;
 }
 .catButton:hover {
   border-color: #dbdbdb;

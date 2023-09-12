@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Questions({ category, trivQuesData, curQuesIdx, setCurQuesIdx }) {
+function Questions({ selCat, trivQuesData, curQuesIdx, setCurQuesIdx }) {
   const ques = trivQuesData[curQuesIdx];
 
   if (ques) {
@@ -40,13 +40,13 @@ function Questions({ category, trivQuesData, curQuesIdx, setCurQuesIdx }) {
     if (trivQuesData.length > 0 && curQuesIdx < trivQuesData.length) {
       return (
         <div>
-          <h2>Category: {category.name}</h2>
+          {selCat ? <h2>{selCat.name}</h2> : <h2>Random</h2>}
           <p>{ques.question}</p>
-          <ul>
+          <div>
             {allChoices.map((answer, index) => (
-              <li key={index}>{answer}</li>
+              <button key={index}>{answer}</button>
             ))}
-          </ul>
+          </div>
           <p>Answer: {ques.correct_answer}</p>
         </div>
       );
