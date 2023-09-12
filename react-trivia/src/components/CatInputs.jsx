@@ -56,7 +56,7 @@ const CatInputs = ({
         </div>
       ) : null}
       <button className='toggleCatInputs' onClick={handleToggle}>
-        ≡ Settings
+        𝌆 Settings
       </button>
       <button className='toggleCatInputs' onClick={handleCat}>
         Search ⮕

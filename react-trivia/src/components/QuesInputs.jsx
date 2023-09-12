@@ -28,7 +28,7 @@ const QuesInputs = ({
 
   return (
     <>
-      <button onClick={handleCat}>≡ Categories</button>
+      <button onClick={handleCat}>𝌆 Categories</button>
       <button onClick={handleBack} disabled={curQuesIdx === initQuesIdx}>
         ⬅Back
       </button>
