@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "he": "^1.2.0",
+    "react-loading-skeleton": "^3.3.1"
+  }
+}

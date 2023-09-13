@@ -256,6 +256,15 @@ h1 {
   background: linear-gradient(140deg, rgba(0, 0, 0, 0.4), rgba(29, 29, 29, 0.9));
   transition: transform 0.2s;
 }
+.selected {
+  background-color: #f0f0f084; /* Change the background color to highlight */
+  border: 2px solid #00920a; /* Change the text color */
+}
+.selected:hover {
+  background-color: #09ff0084; /* Change the background color to highlight */
+  color: #00920a; /* Change the text color */
+  border: 2px solid var(--clr-primary);
+}
 
 .catButtonText {
   font-size: .85em;
@@ -381,13 +390,24 @@ h1 {
   border: 2px solid #d50000; 
 }
 
-.message {
-  font-size: 150%;
+.correctMessage {
+  font-size: 180%;
   font-family: "Avant Garde" sans-serif;
   font-weight: bolder;
   color: var(--clr-light);
   margin-top: 10px;
   margin-bottom: 2px; 
+  color:rgb(55, 204, 55);
+}
+
+.incorrectMessage {
+  font-size: 180%;
+  font-family: "Avant Garde" sans-serif;
+  font-weight: bolder;
+  color: var(--clr-light);
+  margin-top: 10px;
+  margin-bottom: 2px; 
+  color:rgb(201, 0, 0);
 }
 
 .answerText {
@@ -424,9 +444,7 @@ h1 {
   font-size: 180%;
   font-family: "Avant Garde" sans-serif;
   color: var(--clr-light);
-  margin: 2%;
-  margin-top: 4%;
-  margin-bottom: 4%;
+  margin: 10px;
   font-weight: 900;
 }
 

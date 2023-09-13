@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import Quest from 'components/Quest';
 import { all } from 'axios';
 
@@ -63,26 +65,28 @@ function Questions({
         </div>
       );
     } else {
-      return;
-    }
-  } else {
-    return (
-      <div className='quesContainer'>
-        <h2>Error</h2>
-        <div className='arcadeBox'>
-          <div className='shadow'>
-            <img
-              src={`${imageList[curImgIdx]}`}
-              alt='Arcade Img'
-              className='catBoxBanner'
-            ></img>
-          </div>
-          <div className='quesBox'>
-            <div className='noQues'>No question data available</div>
+      return (
+        <div className='quesContainer'>
+          <h2>loading...</h2>
+          <div className='arcadeBox' onClick={handleImgClick}>
+            <div className='shadow'>
+              <img
+                src={`${imageList[curImgIdx]}`}
+                alt='Arcade Img'
+                className='catBoxBanner'
+              ></img>
+            </div>
+            <div className='quesBox'>
+              <div className='noQues'>
+                <Skeleton count={5} height={50} />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+  } else {
+    return;
   }
 }
 

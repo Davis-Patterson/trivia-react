@@ -4,6 +4,7 @@ function Categories({
   curImgIdx,
   imageList,
   handleImgClick,
+  selCat,
 }) {
   return (
     <div>
@@ -19,7 +20,7 @@ function Categories({
           </div>
           {trivCatData.map((trivCat) => (
             <button
-              className='catButton'
+              className={`catButton ${trivCat === selCat ? 'selected' : ''}`}
               key={trivCat.id}
               onClick={() => handleCategory(trivCat)}
             >

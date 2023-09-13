@@ -1,7 +1,7 @@
 const QuesInputs = ({
   initQuesIdx,
-  hasSelCat,
-  setHasSelCat,
+  hasSearched,
+  setHasSearched,
   curQuesIdx,
   setCurQuesIdx,
   lastQuesIdx,
@@ -12,7 +12,7 @@ const QuesInputs = ({
   pauseToggle,
 }) => {
   const handleCat = () => {
-    setHasSelCat(!hasSelCat);
+    setHasSearched(!hasSearched);
     setCurQuesIdx(0);
     setTrivQuesData([]);
     setSelCat(null);

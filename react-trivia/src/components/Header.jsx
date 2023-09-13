@@ -1,9 +1,9 @@
 import bannerImg from 'assets/banner.png';
 import icon from 'assets/icon.png';
 
-const Header = ({ setHasSelCat }) => {
+const Header = ({ setHasSearched }) => {
   const handleClick = () => {
-    setHasSelCat(false);
+    setHasSearched(false);
   };
 
   return (

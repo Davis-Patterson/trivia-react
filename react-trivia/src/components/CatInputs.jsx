@@ -7,8 +7,8 @@ const CatInputs = ({
   setIsCatInputs,
   quesType,
   handleType,
-  hasSelCat,
-  setHasSelCat,
+  hasSearched,
+  setHasSearched,
   setCurQuesIdx,
   isPaused,
   pauseToggle,
@@ -18,7 +18,7 @@ const CatInputs = ({
   };
 
   const handleCat = () => {
-    setHasSelCat(!hasSelCat);
+    setHasSearched(!hasSearched);
     setCurQuesIdx(0);
   };
 

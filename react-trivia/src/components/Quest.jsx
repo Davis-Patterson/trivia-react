@@ -84,9 +84,9 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
               </button>
             ))}
             {selChoi && isCorrect ? (
-              <p className='message'>Correct!</p>
+              <p className='correctMessage'>Correct!</p>
             ) : selChoi && isCorrect === false ? (
-              <p className='message'>Incorrect!</p>
+              <p className='incorrectMessage'>Incorrect :{'('}</p>
             ) : null}
           </div>
           {showAns ? (
@@ -101,14 +101,14 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
         </div>
       );
     } else {
-      return;
+      return (
+        <div className='quesBox'>
+          <div className='noQues'>No question data available</div>
+        </div>
+      );
     }
   } else {
-    return (
-      <div className='quesBox'>
-        <div className='noQues'>No question data available</div>
-      </div>
-    );
+    return;
   }
 };
 export default Quest;

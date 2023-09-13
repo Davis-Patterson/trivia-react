@@ -10,4 +10,7 @@ export default defineConfig({
       assets: '/src/assets',
     },
   },
+  optimizeDeps: {
+    exclude: ['react-loading-skeleton'],
+  },
 });

@@ -19,7 +19,7 @@ function App() {
   const [quesNum, setQuesNum] = useState(10);
   const [quesDiff, setQuesDiff] = useState('');
   const [quesType, setQuesType] = useState('');
-  const [hasSelCat, setHasSelCat] = useState(false); // triggers fetch for questions
+  const [hasSearched, setHasSearched] = useState(false); // triggers fetch for questions
   const [selCat, setSelCat] = useState(null); // actual category data
   const [isCatInputs, setIsCatInputs] = useState(false);
   const [trivQuesData, setTrivQuesData] = useState([]); // trivia question data
@@ -87,17 +87,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (hasSelCat) {
+    if (hasSearched) {
       const url = createUrl();
       axios
         .get(url)
         .then((response) => setTrivQuesData(response.data.results))
         .catch((error) => console.error(`Error: ${error}`));
     }
-  }, [hasSelCat]);
+  }, [hasSearched]);
 
   const handleCategory = (trivCat) => {
-    setHasSelCat(!hasSelCat);
     setSelCat(trivCat);
   };
 
@@ -118,8 +117,8 @@ function App() {
 
   return (
     <>
-      <Header setHasSelCat={setHasSelCat} />
-      {hasSelCat ? (
+      <Header setHasSearched={setHasSearched} />
+      {hasSearched ? (
         <Questions
           selCat={selCat}
           trivQuesData={trivQuesData}
@@ -137,13 +136,14 @@ function App() {
           curImgIdx={curImgIdx}
           imageList={imageList}
           handleImgClick={handleImgClick}
+          selCat={selCat}
         />
       )}
-      {hasSelCat ? (
+      {hasSearched ? (
         <QuesInputs
           initQuesIdx={initQuesIdx}
-          hasSelCat={hasSelCat}
-          setHasSelCat={setHasSelCat}
+          hasSearched={hasSearched}
+          setHasSearched={setHasSearched}
           curQuesIdx={curQuesIdx}
           setCurQuesIdx={setCurQuesIdx}
           lastQuesIdx={lastQuesIdx}
@@ -163,8 +163,8 @@ function App() {
           setIsCatInputs={setIsCatInputs}
           quesType={quesType}
           handleType={handleType}
-          hasSelCat={hasSelCat}
-          setHasSelCat={setHasSelCat}
+          hasSearched={hasSearched}
+          setHasSearched={setHasSearched}
           setCurQuesIdx={setCurQuesIdx}
           isPaused={isPaused}
           pauseToggle={pauseToggle}
