@@ -52,6 +52,22 @@ function App() {
   }
 
   useEffect(() => {
+    axios
+      .get(catUrl)
+      .then((response) => setTrivCatData(response.data.trivia_categories));
+  }, []);
+
+  useEffect(() => {
+    if (hasSearched) {
+      const url = createUrl();
+      axios
+        .get(url)
+        .then((response) => setTrivQuesData(response.data.results))
+        .catch((error) => console.error(`Error: ${error}`));
+    }
+  }, [hasSearched]);
+
+  useEffect(() => {
     const timer = setInterval(() => {
       if (!isPaused) {
         setProgress((prevProgress) => {
@@ -78,25 +94,13 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    axios
-      .get(catUrl)
-      .then((response) => setTrivCatData(response.data.trivia_categories));
-  }, []);
-
-  useEffect(() => {
-    if (hasSearched) {
-      const url = createUrl();
-      axios
-        .get(url)
-        .then((response) => setTrivQuesData(response.data.results))
-        .catch((error) => console.error(`Error: ${error}`));
-    }
-  }, [hasSearched]);
-
   const handleCategory = (trivCat, event) => {
     event.stopPropagation();
-    setSelCat(trivCat);
+    if (selCat) {
+      setSelCat(null);
+    } else {
+      setSelCat(trivCat);
+    }
   };
 
   const handleInputChange = (e) => {
