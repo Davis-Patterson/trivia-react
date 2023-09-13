@@ -93,7 +93,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header setHasSelCat={setHasSelCat} />
       {hasSelCat ? (
         <Questions
           selCat={selCat}
