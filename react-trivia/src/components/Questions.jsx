@@ -8,7 +8,7 @@ function Questions({
   curQuesIdx,
   showAns,
   setShowAns,
-  currentImageIndex,
+  curImgIdx,
   imageList,
   isCorrect,
   setIsCorrect,
@@ -38,7 +38,7 @@ function Questions({
           <div className='arcadeBox'>
             <div className='shadow'>
               <img
-                src={`${imageList[currentImageIndex]}`}
+                src={`${imageList[curImgIdx]}`}
                 alt='Arcade Img'
                 className='catBoxBanner'
               ></img>
@@ -69,7 +69,7 @@ function Questions({
         <div className='arcadeBox'>
           <div className='shadow'>
             <img
-              src={`${imageList[currentImageIndex]}`}
+              src={`${imageList[curImgIdx]}`}
               alt='Arcade Img'
               className='catBoxBanner'
             ></img>

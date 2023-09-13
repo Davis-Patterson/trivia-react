@@ -8,6 +8,8 @@ const QuesInputs = ({
   setTrivQuesData,
   setSelCat,
   setShowAns,
+  isPaused,
+  pauseToggle,
 }) => {
   const handleCat = () => {
     setHasSelCat(!hasSelCat);
@@ -29,6 +31,9 @@ const QuesInputs = ({
   return (
     <>
       <button onClick={handleCat}>𝌆 Categories</button>
+      <button className='toggleCatInputs' onClick={pauseToggle}>
+        {isPaused ? '⏵︎ Play' : '⏸︎ Pause'}
+      </button>
       <button onClick={handleBack} disabled={curQuesIdx === initQuesIdx}>
         ⬅Back
       </button>

@@ -8,6 +8,9 @@ import QuesInputs from './components/QuesInputs';
 import Footer from 'components/Footer';
 import arcadeImg from 'assets/arcade.png';
 import arcadeImg2 from 'assets/arcade2.png';
+import arcadeImg3 from 'assets/arcade3.png';
+import arcadeImg4 from 'assets/arcade4.png';
+import arcadeImg5 from 'assets/arcade5.png';
 import './App.css';
 
 function App() {
@@ -22,11 +25,13 @@ function App() {
   const [trivQuesData, setTrivQuesData] = useState([]); // trivia question data
   const [curQuesIdx, setCurQuesIdx] = useState(initQuesIdx);
   const [showAns, setShowAns] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [curImgIdx, setCurImgIdx] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const lastQuesIdx = trivQuesData.length - 1;
   const catUrl = 'https://opentdb.com/api_category.php?';
   const baseUrl = 'https://opentdb.com/api.php?';
-  const imageList = [arcadeImg, arcadeImg2];
+  const imageList = [arcadeImg, arcadeImg2, arcadeImg3, arcadeImg4, arcadeImg5];
 
   function createUrl() {
     let url = `${baseUrl}amount=${quesNum}`;
@@ -48,11 +53,25 @@ function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageList.length);
-    }, 5000);
+      if (!isPaused) {
+        setProgress((prevProgress) => {
+          const newProgress = prevProgress + 1;
+          if (newProgress >= 100) {
+            setCurImgIdx((prevIndex) => (prevIndex + 1) % imageList.length);
+          }
+          return newProgress % 100;
+        });
+      }
+    }, 60);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused]);
+
+  const pauseToggle = () => {
+    setIsPaused(!isPaused);
+  };
+
+  console.log(progress);
 
   useEffect(() => {
     axios
@@ -63,7 +82,6 @@ function App() {
   useEffect(() => {
     if (hasSelCat) {
       const url = createUrl();
-      console.log(`url: ${url}`);
       axios
         .get(url)
         .then((response) => setTrivQuesData(response.data.results))
@@ -101,14 +119,14 @@ function App() {
           curQuesIdx={curQuesIdx}
           showAns={showAns}
           setShowAns={setShowAns}
-          currentImageIndex={currentImageIndex}
+          curImgIdx={curImgIdx}
           imageList={imageList}
         />
       ) : (
         <Categories
           trivCatData={trivCatData}
           handleCategory={handleCategory}
-          currentImageIndex={currentImageIndex}
+          curImgIdx={curImgIdx}
           imageList={imageList}
         />
       )}
@@ -123,6 +141,8 @@ function App() {
           setTrivQuesData={setTrivQuesData}
           setSelCat={setSelCat}
           setShowAns={setShowAns}
+          isPaused={isPaused}
+          pauseToggle={pauseToggle}
         />
       ) : (
         <CatInputs
@@ -137,6 +157,8 @@ function App() {
           hasSelCat={hasSelCat}
           setHasSelCat={setHasSelCat}
           setCurQuesIdx={setCurQuesIdx}
+          isPaused={isPaused}
+          pauseToggle={pauseToggle}
         />
       )}
       <Footer />

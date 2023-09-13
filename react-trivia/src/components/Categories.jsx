@@ -1,9 +1,4 @@
-function Categories({
-  trivCatData,
-  handleCategory,
-  currentImageIndex,
-  imageList,
-}) {
+function Categories({ trivCatData, handleCategory, curImgIdx, imageList }) {
   return (
     <div>
       <p className='categoriesText'>Categories</p>
@@ -11,7 +6,7 @@ function Categories({
         <div className='arcadeBox'>
           <div className='shadow'>
             <img
-              src={`${imageList[currentImageIndex]}`}
+              src={`${imageList[curImgIdx]}`}
               alt='Arcade Img'
               className='catBoxBanner'
             ></img>

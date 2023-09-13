@@ -19,7 +19,7 @@ return (
     <div className='arcadeBox'>
       <div className='shadow'>
         <img
-          src={`${imageList[currentImageIndex]}`}
+          src={`${imageList[curImgIdx]}`}
           alt='Arcade Img'
           className='catBoxBanner'
         ></img>

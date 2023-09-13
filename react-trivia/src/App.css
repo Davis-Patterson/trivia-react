@@ -90,7 +90,7 @@ header {
   background-color: var(--clr-light);
   color: var(--clr-light);
   font-size: 30;
-  border-bottom: 1px solid var(--clr-secondary);
+  border-bottom: 3px solid var(--clr-primary);
   height: 15%;
   position: relative;
 }

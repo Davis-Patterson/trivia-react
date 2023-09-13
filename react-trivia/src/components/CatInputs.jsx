@@ -10,6 +10,8 @@ const CatInputs = ({
   hasSelCat,
   setHasSelCat,
   setCurQuesIdx,
+  isPaused,
+  pauseToggle,
 }) => {
   const handleToggle = () => {
     setIsCatInputs(!isCatInputs);
@@ -57,6 +59,9 @@ const CatInputs = ({
       ) : null}
       <button className='toggleCatInputs' onClick={handleToggle}>
         𝌆 Settings
+      </button>
+      <button className='toggleCatInputs' onClick={pauseToggle}>
+        {isPaused ? '⏵︎ Play' : '⏸︎ Pause'}
       </button>
       <button className='toggleCatInputs' onClick={handleCat}>
         Search ⮕
