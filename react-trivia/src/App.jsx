@@ -78,8 +78,6 @@ function App() {
     }
   };
 
-  console.log(progress);
-
   useEffect(() => {
     axios
       .get(catUrl)
@@ -128,6 +126,8 @@ function App() {
           curImgIdx={curImgIdx}
           imageList={imageList}
           handleImgClick={handleImgClick}
+          progress={progress}
+          setProgress={setProgress}
         />
       ) : (
         <Categories
@@ -137,6 +137,8 @@ function App() {
           imageList={imageList}
           handleImgClick={handleImgClick}
           selCat={selCat}
+          progress={progress}
+          setProgress={setProgress}
         />
       )}
       {hasSearched ? (

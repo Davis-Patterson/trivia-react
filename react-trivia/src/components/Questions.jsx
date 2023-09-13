@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Progress from 'components/Progress';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Quest from 'components/Quest';
@@ -15,6 +16,8 @@ function Questions({
   isCorrect,
   setIsCorrect,
   handleImgClick,
+  progress,
+  setProgress,
 }) {
   const [allChoices, setAllChoices] = useState([]);
 
@@ -61,6 +64,7 @@ function Questions({
                   />
                 )
             )}
+            <Progress progress={progress} setProgress={setProgress} />
           </div>
         </div>
       );
@@ -81,6 +85,7 @@ function Questions({
                 <Skeleton count={5} height={50} />
               </div>
             </div>
+            <Progress progress={progress} setProgress={setProgress} />
           </div>
         </div>
       );

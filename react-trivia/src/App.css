@@ -276,6 +276,20 @@ h1 {
   align-items: center;
 }
 
+.progressContainer {
+  height: 31px;
+  position: absolute;
+  right: 20px;
+  top: 89%;
+  opacity: 33%;
+  border-radius: 31px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .3);
+}
+
+.progress-bar-percent {
+  display: none;
+}
+
 .catInputContainer {
   display: flex;
   justify-content: center;

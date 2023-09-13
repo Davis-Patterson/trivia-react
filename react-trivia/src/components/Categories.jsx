@@ -1,3 +1,5 @@
+import Progress from 'components/Progress';
+
 function Categories({
   trivCatData,
   handleCategory,
@@ -5,6 +7,8 @@ function Categories({
   imageList,
   handleImgClick,
   selCat,
+  progress,
+  setProgress,
 }) {
   return (
     <div>
@@ -27,6 +31,7 @@ function Categories({
               <div className='catButtonText'>{trivCat.name}</div>
             </button>
           ))}
+          <Progress progress={progress} setProgress={setProgress} />
         </div>
       </div>
     </div>
