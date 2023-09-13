@@ -86,7 +86,9 @@ body {
 }
 
 header {
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--clr-light);
   color: var(--clr-light);
   font-size: 30;
@@ -94,22 +96,36 @@ header {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 4px;
   border-bottom: 4px solid var(--clr-primary);
+  position: relative;
+  height: 15%;
 }
+
+.headerBanner {
+  object-fit: cover; 
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 
 h1 {
   font-size: 2.2em;
   line-height: 1;
 }
 
-
 .triviaHeader {
   font-family: "Avant Garde", sans-serif;
-  font-size: 2.2em;
-  font-weight: bolder;
+  font-size: 4.2em;
+  font-weight: 900;
+  font-style: italic;
   line-height: .8;
-  color: var(--clr-darker);
+  color: var(--clr-lighter);
+  position: absolute;
+  text-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  -webkit-text-stroke: 2px var(--clr-secondary);
+  display: none;
 }
 
 .categoriesText {

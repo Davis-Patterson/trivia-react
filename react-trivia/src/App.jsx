@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Header from 'components/Header';
 import Categories from 'components/Categories';
 import Questions from 'components/Questions';
 import CatInputs from 'components/CatInputs';
@@ -92,9 +93,7 @@ function App() {
 
   return (
     <>
-      <header>
-        <p className='triviaHeader'>Trivia!</p>
-      </header>
+      <Header />
       {hasSelCat ? (
         <Questions
           selCat={selCat}

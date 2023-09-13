@@ -117,7 +117,7 @@ function Questions({
         </div>
       );
     } else {
-      return <div>Loading questions...</div>;
+      return;
     }
   } else {
     return (
