@@ -1,9 +1,15 @@
-function Categories({ trivCatData, handleCategory, curImgIdx, imageList }) {
+function Categories({
+  trivCatData,
+  handleCategory,
+  curImgIdx,
+  imageList,
+  handleImgClick,
+}) {
   return (
     <div>
       <p className='categoriesText'>Categories</p>
       <div className='catContainer'>
-        <div className='arcadeBox'>
+        <div className='arcadeBox' onClick={handleImgClick}>
           <div className='shadow'>
             <img
               src={`${imageList[curImgIdx]}`}

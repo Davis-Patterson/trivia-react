@@ -71,6 +71,13 @@ function App() {
     setIsPaused(!isPaused);
   };
 
+  const handleImgClick = () => {
+    if (imageList) {
+      setCurImgIdx((prevIndex) => (prevIndex + 1) % imageList.length);
+      setProgress(0);
+    }
+  };
+
   console.log(progress);
 
   useEffect(() => {
@@ -121,6 +128,7 @@ function App() {
           setShowAns={setShowAns}
           curImgIdx={curImgIdx}
           imageList={imageList}
+          handleImgClick={handleImgClick}
         />
       ) : (
         <Categories
@@ -128,6 +136,7 @@ function App() {
           handleCategory={handleCategory}
           curImgIdx={curImgIdx}
           imageList={imageList}
+          handleImgClick={handleImgClick}
         />
       )}
       {hasSelCat ? (

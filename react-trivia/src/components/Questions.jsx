@@ -12,8 +12,11 @@ function Questions({
   imageList,
   isCorrect,
   setIsCorrect,
+  handleImgClick,
 }) {
   const [allChoices, setAllChoices] = useState([]);
+
+  const ques = trivQuesData[curQuesIdx];
 
   if (trivQuesData) {
     if (trivQuesData.length > 0 && curQuesIdx < trivQuesData.length) {
@@ -35,7 +38,7 @@ function Questions({
               </p>
             )}
           </div>
-          <div className='arcadeBox'>
+          <div className='arcadeBox' onClick={handleImgClick}>
             <div className='shadow'>
               <img
                 src={`${imageList[curImgIdx]}`}
