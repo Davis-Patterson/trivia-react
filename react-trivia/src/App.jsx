@@ -94,7 +94,8 @@ function App() {
     }
   }, [hasSearched]);
 
-  const handleCategory = (trivCat) => {
+  const handleCategory = (trivCat, event) => {
+    event.stopPropagation();
     setSelCat(trivCat);
   };
 

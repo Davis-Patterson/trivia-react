@@ -26,7 +26,7 @@ function Categories({
             <button
               className={`catButton ${trivCat === selCat ? 'selected' : ''}`}
               key={trivCat.id}
-              onClick={() => handleCategory(trivCat)}
+              onClick={(event) => handleCategory(trivCat, event)}
             >
               <div className='catButtonText'>{trivCat.name}</div>
             </button>
