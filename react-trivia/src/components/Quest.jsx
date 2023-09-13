@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import he from 'he';
 
 const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
+  const [allChoices, setAllChoices] = useState([]);
   const [isCorrect, setIsCorrect] = useState(null);
   const [selChoi, setSelChoi] = useState('');
 
@@ -13,8 +14,6 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
     setSelChoi(choi);
     setIsCorrect(choi === ques.correct_answer); // CHECKS IF CORRECT
   };
-
-  const [allChoices, setAllChoices] = useState([]);
 
   useEffect(() => {
     if (ques) {

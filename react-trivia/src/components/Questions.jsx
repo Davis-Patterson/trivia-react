@@ -14,9 +14,8 @@ function Questions({
   setIsCorrect,
 }) {
   const [allChoices, setAllChoices] = useState([]);
-  const ques = trivQuesData[curQuesIdx];
 
-  if (ques) {
+  if (trivQuesData) {
     if (trivQuesData.length > 0 && curQuesIdx < trivQuesData.length) {
       return (
         <div className='quesContainer'>
@@ -44,13 +43,19 @@ function Questions({
                 className='catBoxBanner'
               ></img>
             </div>
-            <Quest
-              ques={ques}
-              trivQuesData={trivQuesData}
-              showAns={showAns}
-              setShowAns={setShowAns}
-              curQuesIdx={curQuesIdx}
-            />
+            {trivQuesData.map(
+              (ques, index) =>
+                curQuesIdx === index && (
+                  <Quest
+                    key={index}
+                    ques={ques}
+                    trivQuesData={trivQuesData}
+                    showAns={showAns}
+                    setShowAns={setShowAns}
+                    curQuesIdx={curQuesIdx}
+                  />
+                )
+            )}
           </div>
         </div>
       );
