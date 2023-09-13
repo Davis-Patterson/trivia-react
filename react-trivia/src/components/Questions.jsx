@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import he from 'he';
+import Quest from 'components/Quest';
+import { all } from 'axios';
 
 function Questions({
   selCat,
@@ -9,51 +10,11 @@ function Questions({
   setShowAns,
   currentImageIndex,
   imageList,
+  isCorrect,
+  setIsCorrect,
 }) {
-  const ques = trivQuesData[curQuesIdx];
   const [allChoices, setAllChoices] = useState([]);
-
-  const handleShow = () => {
-    setShowAns(!showAns);
-  };
-
-  useEffect(() => {
-    if (ques) {
-      let choicesAndAnswer = [ques.correct_answer, ...ques.incorrect_answers];
-      setAllChoices(shuffleArray(choicesAndAnswer));
-    }
-  }, [ques]);
-
-  console.log(`ques: ${ques}`);
-
-  function shuffleArray(array) {
-    // fisher-yates shuffle algorithm modified to handle T/F questions differently
-    if (
-      array.length === 2 &&
-      array.includes('True') &&
-      array.includes('False')
-    ) {
-      return ['True', 'False'];
-    }
-
-    // if not T/F perform Fisher-Yates shuffle
-    let currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
-
-    while (currentIndex !== 0) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  }
+  const ques = trivQuesData[curQuesIdx];
 
   if (ques) {
     if (trivQuesData.length > 0 && curQuesIdx < trivQuesData.length) {
@@ -83,36 +44,13 @@ function Questions({
                 className='catBoxBanner'
               ></img>
             </div>
-            <div className='quesBox'>
-              <div className='textBox'>
-                <div className='quesInfoBox'>
-                  <p className='quesCount'>
-                    Question:{' '}
-                    <strong>
-                      {curQuesIdx + 1}/{trivQuesData.length}
-                    </strong>
-                  </p>
-                  <p className='quesDiffText'>
-                    <strong>difficulty</strong>: <i>{ques.difficulty}</i>
-                  </p>
-                </div>
-                <p className='quesText'>{he.decode(ques.question)}</p>
-              </div>
-              <div className='choiceBox'>
-                {allChoices.map((answer, index) => (
-                  <button key={index}>{he.decode(answer)}</button>
-                ))}
-              </div>
-              {showAns ? (
-                <p onClick={handleShow} className='answerTextShown'>
-                  {ques.correct_answer}
-                </p>
-              ) : (
-                <p onClick={handleShow} className='answerText'>
-                  ~ click for answer ~
-                </p>
-              )}
-            </div>
+            <Quest
+              ques={ques}
+              trivQuesData={trivQuesData}
+              showAns={showAns}
+              setShowAns={setShowAns}
+              curQuesIdx={curQuesIdx}
+            />
           </div>
         </div>
       );
