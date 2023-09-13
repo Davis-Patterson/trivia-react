@@ -11,8 +11,8 @@ const Progress = ({ progress, setProgress }) => {
     percentage: PropTypes.number.isRequired,
   };
 
-  console.log(`Progress: ${progress}`);
-  console.log(`validProgress: ${validProgress}`);
+  // console.log(`Progress: ${progress}`);
+  // console.log(`validProgress: ${validProgress}`);
 
   return (
     <>

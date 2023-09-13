@@ -18,6 +18,7 @@ function Questions({
   handleImgClick,
   progress,
   setProgress,
+  fade,
 }) {
   const [allChoices, setAllChoices] = useState([]);
 
@@ -48,7 +49,7 @@ function Questions({
               <img
                 src={`${imageList[curImgIdx]}`}
                 alt='Arcade Img'
-                className='catBoxBanner'
+                className={`catBoxBanner ${fade}`}
               ></img>
             </div>
             {trivQuesData.map(
@@ -77,12 +78,12 @@ function Questions({
               <img
                 src={`${imageList[curImgIdx]}`}
                 alt='Arcade Img'
-                className='catBoxBanner'
+                className={`catBoxBanner ${fade}`}
               ></img>
             </div>
             <div className='quesBox'>
               <div className='noQues'>
-                <Skeleton count={5} height={50} />
+                <Skeleton count={5} height={50} containerClassName='flex-1' />
               </div>
             </div>
             <Progress progress={progress} setProgress={setProgress} />

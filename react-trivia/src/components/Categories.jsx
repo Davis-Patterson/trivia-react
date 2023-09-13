@@ -9,6 +9,7 @@ function Categories({
   selCat,
   progress,
   setProgress,
+  fade,
 }) {
   return (
     <div>
@@ -19,7 +20,7 @@ function Categories({
             <img
               src={`${imageList[curImgIdx]}`}
               alt='Arcade Img'
-              className='catBoxBanner'
+              className={`catBoxBanner ${fade}`}
             ></img>
           </div>
           {trivCatData.map((trivCat) => (

@@ -28,6 +28,8 @@ function App() {
   const [curImgIdx, setCurImgIdx] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isPaused2, setIsPaused2] = useState(false);
+  const [fade, setFade] = useState('fade-in');
   const lastQuesIdx = trivQuesData.length - 1;
   const catUrl = 'https://opentdb.com/api_category.php?';
   const baseUrl = 'https://opentdb.com/api.php?';
@@ -69,19 +71,27 @@ function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (!isPaused) {
+      if (!isPaused && !isPaused2) {
         setProgress((prevProgress) => {
           const newProgress = prevProgress + 1;
           if (newProgress >= 100) {
-            setCurImgIdx((prevIndex) => (prevIndex + 1) % imageList.length);
+            // If progress reaches 100, trigger 'fade-out' and reset progress
+            setIsPaused2(true);
+            setFade('fade-out');
+            setTimeout(() => {
+              setCurImgIdx((prevIndex) => (prevIndex + 1) % imageList.length);
+              setProgress(0);
+              setIsPaused2(false);
+              setFade('fade-in');
+            }, 500); // Delay time for 'fade-out', adjust as needed
           }
           return newProgress % 100;
         });
       }
-    }, 60);
+    }, 60); // Adjust the interval time as needed
 
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, isPaused2]);
 
   const pauseToggle = () => {
     setIsPaused(!isPaused);
@@ -96,7 +106,7 @@ function App() {
 
   const handleCategory = (trivCat, event) => {
     event.stopPropagation();
-    if (selCat) {
+    if (trivCat === selCat) {
       setSelCat(null);
     } else {
       setSelCat(trivCat);
@@ -133,6 +143,7 @@ function App() {
           handleImgClick={handleImgClick}
           progress={progress}
           setProgress={setProgress}
+          fade={fade}
         />
       ) : (
         <Categories
@@ -144,6 +155,7 @@ function App() {
           selCat={selCat}
           progress={progress}
           setProgress={setProgress}
+          fade={fade}
         />
       )}
       {hasSearched ? (

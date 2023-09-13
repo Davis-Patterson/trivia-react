@@ -6,13 +6,15 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [selChoi, setSelChoi] = useState('');
 
-  const handleShow = () => {
+  const handleShow = (event) => {
     setShowAns(!showAns);
+    event.stopPropagation();
   };
 
-  const handleChoiClick = (choi) => {
+  const handleChoiClick = (choi, event) => {
     setSelChoi(choi);
     setIsCorrect(choi === ques.correct_answer); // CHECKS IF CORRECT
+    event.stopPropagation();
   };
 
   useEffect(() => {
@@ -78,7 +80,7 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
                 } ${isCorrect === true ? 'correct' : ''} ${
                   isCorrect === false ? 'incorrect' : ''
                 }`}
-                onClick={() => handleChoiClick(choi)}
+                onClick={(event) => handleChoiClick(choi, event)}
               >
                 {he.decode(choi)}
               </button>
@@ -94,7 +96,7 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
               {he.decode(ques.correct_answer)}
             </p>
           ) : (
-            <p onClick={handleShow} className='answerText'>
+            <p onClick={(event) => handleShow(event)} className='answerText'>
               ~ click for answer ~
             </p>
           )}

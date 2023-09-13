@@ -266,6 +266,16 @@ h1 {
   border: 2px solid var(--clr-primary);
 }
 
+.fade-in {
+  opacity: 1;
+  transition: opacity .8s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity .8s ease-in-out;
+}
+
 .catButtonText {
   font-size: .85em;
   font-family: "Avant Garde" sans-serif;
@@ -279,9 +289,10 @@ h1 {
 .progressContainer {
   height: 31px;
   position: absolute;
-  right: 20px;
-  top: 89%;
+  right: 12px;
+  bottom: 1.5%;
   opacity: 33%;
+  z-index: -1;
   border-radius: 31px;
   box-shadow: 0 0 12px rgba(0, 0, 0, .3);
 }
