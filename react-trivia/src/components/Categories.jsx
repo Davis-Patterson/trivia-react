@@ -32,7 +32,7 @@ function Categories({
               <div className='catButtonText'>{trivCat.name}</div>
             </button>
           ))}
-          {/* <Progress progress={progress} setProgress={setProgress} /> */}
+          <Progress progress={progress} setProgress={setProgress} />
         </div>
       </div>
     </div>

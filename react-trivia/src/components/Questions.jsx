@@ -98,7 +98,7 @@ function Questions({
                 <Skeleton count={5} height={50} containerClassName='flex-1' />
               </div>
             </div>
-            {/* <Progress progress={progress} setProgress={setProgress} /> */}
+            <Progress progress={progress} setProgress={setProgress} />
           </div>
         </div>
       );
