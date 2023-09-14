@@ -1,18 +1,24 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const QuesContxt = createContext();
 
 export function QuestionProvider({ children }) {
   const [questions, setQuestions] = useState([]);
-  const [userAnswers, setUserAnswers] = useState({});
-  const [selChoi, setSelChoi] = useState('');
-  const [isCorrect, setIsCorrect] = useState(null);
+  const [userAnswers, setUserAnswers] = useState([]); // Store user answers as an array of objects
+
+  useEffect(() => {
+    // Initialize userAnswers with default state for each question
+    setUserAnswers(
+      Array(questions.length).fill({ selChoi: '', isCorrect: null })
+    );
+  }, [questions]);
 
   const updateUserAnswers = (questionIndex, answer) => {
-    setUserAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [questionIndex]: answer,
-    }));
+    setUserAnswers((prevAnswers) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[questionIndex] = answer;
+      return updatedAnswers;
+    });
   };
 
   return (
@@ -22,10 +28,6 @@ export function QuestionProvider({ children }) {
         setQuestions,
         userAnswers,
         updateUserAnswers,
-        selChoi,
-        setSelChoi,
-        isCorrect,
-        setIsCorrect,
       }}
     >
       {children}

@@ -3,7 +3,12 @@ import { useQuestionContext } from 'contexts/QuesContxt';
 import he from 'he';
 
 const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
-  const { selChoi, setSelChoi, isCorrect, setIsCorrect } = useQuestionContext();
+  const { userAnswers, updateUserAnswers } = useQuestionContext();
+  const userAnswer = userAnswers[curQuesIdx];
+  const defaultSelChoi = userAnswer ? userAnswer.selChoi : '';
+  const defaultIsCorrect = userAnswer ? userAnswer.isCorrect : null;
+  const [selChoi, setSelChoi] = useState(defaultSelChoi);
+  const [isCorrect, setIsCorrect] = useState(defaultIsCorrect);
   const [allChoices, setAllChoices] = useState([]);
 
   const handleShow = (event) => {
@@ -13,8 +18,9 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
 
   const handleChoiClick = (choi, event) => {
     setSelChoi(choi);
-    setIsCorrect(choi === ques.correct_answer); // CHECKS IF CORRECT
-    const isAnsCor = choi === ques.correct_answer;
+    const isAnsCor = choi === ques.correct_answer; // CHECKS IF CORRECT
+    setIsCorrect(isAnsCor);
+    updateUserAnswers(curQuesIdx, { selChoi: choi, isCorrect: isAnsCor });
     event.stopPropagation();
   };
 
@@ -111,7 +117,7 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
       );
     }
   } else {
-    return;
+    return null;
   }
 };
 export default Quest;
