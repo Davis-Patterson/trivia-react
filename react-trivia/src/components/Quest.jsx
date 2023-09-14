@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useQuestionContext } from 'components/QuesContxt';
+import { useQuestionContext } from 'contexts/QuesContxt';
 import he from 'he';
 
 const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
