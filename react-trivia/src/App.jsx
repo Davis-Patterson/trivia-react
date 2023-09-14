@@ -139,6 +139,8 @@ function App() {
   return (
     <>
       <Header
+        trivQuesData={trivQuesData}
+        hasSearched={hasSearched}
         setHasSearched={setHasSearched}
         setCurQuesIdx={setCurQuesIdx}
         setTrivQuesData={setTrivQuesData}

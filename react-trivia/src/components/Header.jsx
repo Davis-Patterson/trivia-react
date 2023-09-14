@@ -3,6 +3,8 @@ import icon from 'assets/icon.png';
 import { useQuestionContext } from 'contexts/QuesContxt';
 
 const Header = ({
+  trivQuesData,
+  hasSearched,
   setHasSearched,
   setCurQuesIdx,
   setTrivQuesData,

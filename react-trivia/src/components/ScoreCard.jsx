@@ -39,7 +39,8 @@ const ScoreCard = ({ trivQuesData }) => {
                 </p>
                 <div className='answeredBox'>
                   <p className='answeredText'>
-                    <strong>Answered:</strong> {userAnswer || 'Not answered'}
+                    <strong>Answered:</strong>{' '}
+                    {he.decode(userAnswer) || 'Not answered'}
                   </p>
                   <p className='correctText'>
                     <strong>Correct:</strong> {he.decode(correctAnswer)}
