@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useQuestionContext } from 'components/QuesContxt';
 import he from 'he';
 
 const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
+  const { selChoi, setSelChoi, isCorrect, setIsCorrect } = useQuestionContext();
   const [allChoices, setAllChoices] = useState([]);
-  const [isCorrect, setIsCorrect] = useState(null);
-  const [selChoi, setSelChoi] = useState('');
 
   const handleShow = (event) => {
     setShowAns(!showAns);
@@ -14,6 +14,7 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
   const handleChoiClick = (choi, event) => {
     setSelChoi(choi);
     setIsCorrect(choi === ques.correct_answer); // CHECKS IF CORRECT
+    const isAnsCor = choi === ques.correct_answer;
     event.stopPropagation();
   };
 
