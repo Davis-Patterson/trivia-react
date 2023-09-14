@@ -14,7 +14,7 @@ const Header = ({
 
   const handleClick = () => {
     resetUserAnswers();
-    setHasSearched(!hasSearched);
+    setHasSearched(false);
     setCurQuesIdx(0);
     setTrivQuesData([]);
     setSelCat(null);
