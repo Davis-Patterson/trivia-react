@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Progress from 'components/Progress';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useQuestionContext } from 'contexts/QuesContxt';
 import Quest from 'components/Quest';
+import ScoreCard from 'components/ScoreCard';
 import { all } from 'axios';
 
 function Questions({
@@ -21,8 +23,14 @@ function Questions({
   fade,
 }) {
   const [allChoices, setAllChoices] = useState([]);
+  const { userAnswers, updateUserAnswers } = useQuestionContext();
 
   const ques = trivQuesData[curQuesIdx];
+
+  const isAllAnswered = trivQuesData.every((ques, index) => {
+    const userAnswer = userAnswers[index];
+    return userAnswer && userAnswer.selChoi !== '';
+  });
 
   if (trivQuesData) {
     if (trivQuesData.length > 0 && curQuesIdx < trivQuesData.length) {
@@ -52,18 +60,22 @@ function Questions({
                 className={`catBoxBanner ${fade}`}
               ></img>
             </div>
-            {trivQuesData.map(
-              (ques, index) =>
-                curQuesIdx === index && (
-                  <Quest
-                    key={index}
-                    ques={ques}
-                    trivQuesData={trivQuesData}
-                    showAns={showAns}
-                    setShowAns={setShowAns}
-                    curQuesIdx={curQuesIdx}
-                  />
-                )
+            {isAllAnswered ? (
+              <ScoreCard trivQuesData={trivQuesData} /> // Display ScoreCard when isAllAnswered is true
+            ) : (
+              trivQuesData.map(
+                (ques, index) =>
+                  curQuesIdx === index && (
+                    <Quest
+                      key={index}
+                      ques={ques}
+                      trivQuesData={trivQuesData}
+                      showAns={showAns}
+                      setShowAns={setShowAns}
+                      curQuesIdx={curQuesIdx}
+                    />
+                  )
+              )
             )}
             <Progress progress={progress} setProgress={setProgress} />
           </div>

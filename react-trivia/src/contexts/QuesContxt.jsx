@@ -13,6 +13,13 @@ export function QuestionProvider({ children }) {
     );
   }, [questions]);
 
+  const resetUserAnswers = () => {
+    // Reset userAnswers when starting a new quiz
+    setUserAnswers(
+      Array(questions.length).fill({ selChoi: '', isCorrect: null })
+    );
+  };
+
   const updateUserAnswers = (questionIndex, answer) => {
     setUserAnswers((prevAnswers) => {
       const updatedAnswers = [...prevAnswers];
@@ -28,6 +35,7 @@ export function QuestionProvider({ children }) {
         setQuestions,
         userAnswers,
         updateUserAnswers,
+        resetUserAnswers,
       }}
     >
       {children}

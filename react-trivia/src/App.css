@@ -465,6 +465,104 @@ h1 {
   transition: scale 0.5s text-shadow 0.5s;
 }
 
+.scoreText {
+  font-size: 180%;
+  font-family: "Avant Garde" sans-serif;
+  font-weight: bolder;
+  color: var(--clr-light);
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--clr-primary);
+}
+
+.percentage {
+  font-size: 180%;
+  font-family: "Avant Garde" sans-serif;
+  font-weight: bolder;
+  color: var(--clr-light);
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  line-height: 1;
+}
+
+.scoreInfo {
+  font-size: 120%;
+  font-family: "Avant Garde" sans-serif;
+  font-weight: bolder;
+  color: var(--clr-light);
+  padding: 5px; 
+  line-height: 1;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.questionDetails {
+  padding: 8px;
+  line-height: 1;
+}
+
+.questionDetail {
+  border: 1px solid var(--clr-primary);
+  border-radius: 15px;
+  margin: 4px;
+  margin-bottom: 15px;
+}
+
+.questionsText {
+  font-size: 90%;
+  font-family: "Avant Garde" sans-serif;
+  color: var(--clr-light);
+  line-height: 1;
+  margin: 0;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.answeredBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px;
+  line-height: 1;
+}
+
+.answeredText {
+  font-size: 90%;
+  font-family: "Avant Garde" sans-serif;
+  color: var(--clr-light);
+  padding: 5px; 
+  margin: 0;
+}
+
+.correctText {
+  font-size: 90%;
+  font-family: "Avant Garde" sans-serif;
+  color: var(--clr-light);
+  padding: 5px; 
+  margin: 0;
+}
+
+.resultCorrect, .resultIncorrect {
+  font-size: 100%;
+  font-family: "Avant Garde" sans-serif;
+  font-weight: 900;
+  color: var(--clr-light);
+  padding: 5px; 
+  line-height: 1;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.resultCorrect {
+  color: green; 
+}
+.resultIncorrect {
+  color: red;
+}
+
 .noQues {
   font-size: 180%;
   font-family: "Avant Garde" sans-serif;

@@ -88,6 +88,7 @@ const Quest = ({ ques, trivQuesData, showAns, setShowAns, curQuesIdx }) => {
                   isCorrect === false ? 'incorrect' : ''
                 }`}
                 onClick={(event) => handleChoiClick(choi, event)}
+                disabled={selChoi !== ''}
               >
                 {he.decode(choi)}
               </button>

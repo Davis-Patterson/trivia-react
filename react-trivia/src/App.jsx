@@ -5,7 +5,9 @@ import Categories from 'components/Categories';
 import Questions from 'components/Questions';
 import CatInputs from 'components/CatInputs';
 import QuesInputs from './components/QuesInputs';
+import ScoreInputs from './components/ScoreInputs';
 import Footer from 'components/Footer';
+import { useQuestionContext } from 'contexts/QuesContxt';
 import arcadeImg from 'assets/arcade.png';
 import arcadeImg2 from 'assets/arcade2.png';
 import arcadeImg3 from 'assets/arcade3.png';
@@ -34,6 +36,12 @@ function App() {
   const catUrl = 'https://opentdb.com/api_category.php?';
   const baseUrl = 'https://opentdb.com/api.php?';
   const imageList = [arcadeImg, arcadeImg2, arcadeImg3, arcadeImg4, arcadeImg5];
+  const { userAnswers, updateUserAnswers } = useQuestionContext();
+
+  const isAllAnswered = trivQuesData.every((ques, index) => {
+    const userAnswer = userAnswers[index];
+    return userAnswer && userAnswer.selChoi !== '';
+  });
 
   function createUrl() {
     let url = `${baseUrl}amount=${quesNum}`;
@@ -130,7 +138,12 @@ function App() {
 
   return (
     <>
-      <Header setHasSearched={setHasSearched} />
+      <Header
+        setHasSearched={setHasSearched}
+        setCurQuesIdx={setCurQuesIdx}
+        setTrivQuesData={setTrivQuesData}
+        setSelCat={setSelCat}
+      />
       {hasSearched ? (
         <Questions
           selCat={selCat}
@@ -159,19 +172,32 @@ function App() {
         />
       )}
       {hasSearched ? (
-        <QuesInputs
-          initQuesIdx={initQuesIdx}
-          hasSearched={hasSearched}
-          setHasSearched={setHasSearched}
-          curQuesIdx={curQuesIdx}
-          setCurQuesIdx={setCurQuesIdx}
-          lastQuesIdx={lastQuesIdx}
-          setTrivQuesData={setTrivQuesData}
-          setSelCat={setSelCat}
-          setShowAns={setShowAns}
-          isPaused={isPaused}
-          pauseToggle={pauseToggle}
-        />
+        isAllAnswered ? (
+          <ScoreInputs
+            trivQuesData={trivQuesData}
+            hasSearched={hasSearched}
+            setHasSearched={setHasSearched}
+            setCurQuesIdx={setCurQuesIdx}
+            setTrivQuesData={setTrivQuesData}
+            setSelCat={setSelCat}
+            isPaused={isPaused}
+            pauseToggle={pauseToggle}
+          />
+        ) : (
+          <QuesInputs
+            initQuesIdx={initQuesIdx}
+            hasSearched={hasSearched}
+            setHasSearched={setHasSearched}
+            curQuesIdx={curQuesIdx}
+            setCurQuesIdx={setCurQuesIdx}
+            lastQuesIdx={lastQuesIdx}
+            setTrivQuesData={setTrivQuesData}
+            setSelCat={setSelCat}
+            setShowAns={setShowAns}
+            isPaused={isPaused}
+            pauseToggle={pauseToggle}
+          />
+        )
       ) : (
         <CatInputs
           quesNum={quesNum}

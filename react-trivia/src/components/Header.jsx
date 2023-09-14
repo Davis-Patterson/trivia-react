@@ -1,9 +1,21 @@
 import bannerImg from 'assets/banner.png';
 import icon from 'assets/icon.png';
+import { useQuestionContext } from 'contexts/QuesContxt';
 
-const Header = ({ setHasSearched }) => {
+const Header = ({
+  setHasSearched,
+  setCurQuesIdx,
+  setTrivQuesData,
+  setSelCat,
+}) => {
+  const { resetUserAnswers } = useQuestionContext();
+
   const handleClick = () => {
-    setHasSearched(false);
+    resetUserAnswers();
+    setHasSearched(!hasSearched);
+    setCurQuesIdx(0);
+    setTrivQuesData([]);
+    setSelCat(null);
   };
 
   return (
